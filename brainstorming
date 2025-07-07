@@ -1,0 +1,40 @@
+Github REST API = https://docs.github.com/en/rest
+
+What am I testing? Profile page
+
+1. UI testing
+    1. Github profile page opens on the URL
+    2. It has all main elements
+        - PFP
+        - Name
+        - Bio
+    3. It has all main tabs
+        - Overview
+        - Repositories
+        - Projects
+        - Packages
+        - Stars
+    4. Overview page
+        - Clickable edit profile button if logged in
+        - Editable thought button
+        - Editable avatar
+        - Pinned repositories are present if there are pinned repositories
+    5. Edit page
+        - 
+2. API testing
+
+
+Scaling:
+1. Интеграция с CI/CD (GitHub Actions): Настройте .github/workflows/main.yml, чтобы ваши тесты запускались автоматически при каждом пуше в ветку main.
+
+2. Отчетность (Allure Reports): Интегрируйте Pytest с Allure, чтобы генерировать красивые и информативные отчеты о прохождении тестов.
+
+3. Параметризация тестов: Используйте pytest.mark.parametrize для тестирования разных пользователей или разных комбинаций данных для редактирования профиля.
+
+4. Обработка ошибок и логирование: Добавьте логирование (logging модуль в Python) в ваш API-клиент и UI-методы, чтобы отслеживать запросы/ответы и ошибки.
+
+5. Data-Driven Testing (DDT): Читайте тестовые данные (например, для разных значений полей профиля) из внешнего файла (JSON, CSV).
+
+6. Конфигурация: Вынесите baseURL API и другие константы в отдельный файл конфигурации.
+
+7. Dockerization (опционально): Упакуйте ваше тестовое окружение в Docker-контейнер, чтобы любой мог легко запустить ваши тесты.

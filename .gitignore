@@ -1,0 +1,33 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python/
+
+# Virtual environment
+.venv/
+
+# pytest cache directory
+.pytest_cache/
+
+# VS Code directory (optional, but generally recommended)
+.vscode/
+
+# Editor/OS specific temporary files
+*~
+*.swp
+*.swo
+.DS_Store # macOS specific
+Thumbs.db # Windows specific
+
+# Other common temporary files or logs you might generate
+*.log
+*.tmp
+*.bak
+
+# If I ever have a 'report' folder or similar where test reports are generated
+# /reports/
+
+# Any specific data files that shouldn't be version controlled
+# /data/*.csv

@@ -5,3 +5,4 @@ Required:
     - playwright
     - pytest
     - pytest-xdist
+    - requests

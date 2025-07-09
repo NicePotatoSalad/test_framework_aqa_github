@@ -68,9 +68,12 @@ def test_get_public_user_profile_success(api_client):
 
     # 2. Assert JSON response structure and content
     user_data = response.json()
+
     assert "login" in user_data, "Response JSON missing 'login' field"
+
     assert user_data["login"] == TEST_USERNAME, \
         f"Expected username '{TEST_USERNAME}', got '{user_data['login']}'"
+    
     assert "id" in user_data, "Response JSON missing 'id' field"
     assert "public_repos" in user_data, "Response JSON missing 'public_repos' field"
     assert isinstance(user_data["public_repos"], int), "'public_repos' is not an integer"
@@ -78,56 +81,23 @@ def test_get_public_user_profile_success(api_client):
     print(f"Successfully fetched profile for {TEST_USERNAME}. Public Repos: {user_data['public_repos']}")
 
 
-# def test_get_public_user_profile_not_found(api_client):
-#     """
-#     Test: Verify fetching profile for a non-existent user returns 404.
-#     """
-#     non_existent_username = "this-user-definitely-does-not-exist-1234567890abc"
-#     response = api_client.get_user_profile(non_existent_username)
+def test_get_public_user_profile_not_found(api_client):
+    """
+    Test: Verify fetching profile for a non-existent user returns 404.
+    """
+    non_existent_username = "this-user-definitely-does-not-exist-1234567890abc"
+    response = api_client.get_user_profile(non_existent_username)
 
-#     assert response.status_code == 404, \
-#         f"Expected status 404 for non-existent user, got {response.status_code}. Response: {response.text}"
+    assert response.status_code == 404, \
+        f"Expected status 404 for non-existent user, got {response.status_code}. Response: {response.text}"
     
-#     error_data = response.json()
-#     assert "message" in error_data, "Error response missing 'message' field"
-#     assert "Not Found" in error_data["message"], "Error message does not contain 'Not Found'"
+    error_data = response.json()
+    assert "message" in error_data, "Error response missing 'message' field"
+    assert "Not Found" in error_data["message"], "Error message does not contain 'Not Found'"
 
 
-# @pytest.mark.skipif(not GITHUB_PAT, reason="Requires GITHUB_PAT environment variable for authentication.")
-# def test_update_user_bio(api_client, restore_user_bio):
-#     """
-#     Test: Update the authenticated user's profile bio via API.
-#     Requires 'user' scope on the PAT.
-#     """
-#     original_profile_response = api_client.get_user_profile(TEST_USERNAME)
-#     assert original_profile_response.status_code == 200
-#     original_bio = original_profile_response.json().get("bio", "")
-
-#     # Generate a unique new bio to avoid caching issues and make it visible
-#     random_suffix = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
-#     new_bio = f"This is an automated test bio updated at {random_suffix}"
-    
-#     print(f"Attempting to update bio to: '{new_bio}'")
-
-#     response = api_client.update_authenticated_user_profile(bio=new_bio)
-
-#     assert response.status_code == 200, \
-#         f"Expected status 200 for profile update, got {response.status_code}. Response: {response.text}"
-    
-#     updated_profile_data = response.json()
-#     assert "bio" in updated_profile_data, "Updated profile response missing 'bio' field"
-#     assert updated_profile_data["bio"] == new_bio, \
-#         f"Bio not updated correctly. Expected '{new_bio}', got '{updated_profile_data['bio']}'"
-    
-#     print(f"Bio successfully updated to: '{updated_profile_data['bio']}'")
-
-#     # Clean up (restore original bio or a generic one) - IMPORTANT for real projects!
-#     # For MVP, we'll leave it as is, but consider adding this for a more robust test suite.
-#     # api_client.update_authenticated_user_profile(bio=original_bio) # Uncomment for cleanup
-
-
-# @pytest.mark.skipif(not GITHUB_PAT, reason="Requires GITHUB_PAT environment variable for authentication.")
-# def test_update_user_bio_empty(api_client):
+@pytest.mark.skipif(not GITHUB_PAT, reason="Requires GITHUB_PAT environment variable for authentication.")
+def test_update_user_bio_empty(api_client, restore_user_bio):
     """
     Test: Update the authenticated user's profile bio to be empty.
     """

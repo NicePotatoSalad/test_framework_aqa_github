@@ -8,7 +8,7 @@ class ProfilePage:
 
     def __init__(self, page):
         self.page = page
-        # Локаторы основных элементов страницы профиля
+        # Locators of main elements
         self.additional_username = page.locator("h1.vcard-names span.p-nickname") # NicePotatoSalad
         self.username = page.locator("h1.vcard-names span.p-name") # Greg
         self.bio_text = page.locator("div.p-note.user-profile-bio")

@@ -23,7 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Show installed packages (optional) # Show packages for debugging
+      - name: Show installed packages # Show packages for debugging
         run: pip freeze
   unit_and_api_tests:
     runs-on: ubuntu-latest
@@ -43,6 +43,6 @@ jobs:
           pip install -r requirements.txt 
 
       - name: Run API Tests 
-        run: pytest tests/api/ 
+        run: pytest tests/api/ -n auto
 
     

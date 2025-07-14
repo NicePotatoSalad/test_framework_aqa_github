@@ -1,6 +1,6 @@
 # tests/test_user_profile_api.py
 import pytest
-from api.github_api_client import GitHubApiClient
+from tests.api.client.github_api_client import GitHubApiClient
 import os
 import random
 import string

@@ -1,8 +1,4 @@
-Required:
-    - Virtual Machine venv
-    - Python 3.8 or higher
-    - pip
-    - playwright
-    - pytest
-    - pytest-xdist
-    - requests
+playwright
+pytest
+pytest-xdist
+requests

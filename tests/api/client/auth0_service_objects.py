@@ -49,11 +49,12 @@ class Auth0UserAPI(Auth0Service):
         Class for User interaction with API.
         Requires domain
     """
-    def __init__(self, domain):
+    def __init__(self, domain, default_app_client_id):
         super().__init__(domain)
         self.headers = {
             "Content-type": "application/json"
         } 
+        self.default_app_client_id = default_app_client_id
         # ? Do I need anything else?
     
     def log_in():
@@ -61,5 +62,18 @@ class Auth0UserAPI(Auth0Service):
 
     def do_something():
         pass
+
+    def signup_user(self, email, password, connection="Username-Password-Authentication"):
+        """Signs up a new user via the Authentication API."""
+        endpoint = "/dbconnections/signup"
+        json_payload = {
+            "client_id": self.default_app_client_id, # ! what is it?
+            "email": email,
+            "password": password,
+            "connection": connection
+        }
+        print(f"Auth API: Signing up {email}...")
+        response = self.make_request("POST", endpoint, json_payload=json_payload)
+        return response
 
     # TODO: All other functions that are User part

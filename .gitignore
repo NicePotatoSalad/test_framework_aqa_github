@@ -31,3 +31,4 @@ Thumbs.db # Windows specific
 
 # Any specific data files that shouldn't be version controlled
 # /data/*.csv
+.env

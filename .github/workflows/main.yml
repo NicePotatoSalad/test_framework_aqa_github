@@ -2,9 +2,9 @@ name: GitHub Pipeline
 
 on:
   push:
-    branches: ci-cd_implem
+    branches: ['**']
   pull_request:
-    branches: ci-cd_implem
+    branches: ['**']
 
 jobs:
   build:
